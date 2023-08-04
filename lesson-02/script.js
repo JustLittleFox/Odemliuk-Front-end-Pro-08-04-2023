@@ -15,5 +15,7 @@ const number = userNumbers;
 
 const result2 = userNumbers.split('').join(' ');
 
-alert(+ number);
+alert(`Is it your number? 
+` + number + ``);
+alert(result2);
 console.log(result2);
