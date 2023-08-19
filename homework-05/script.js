@@ -5,13 +5,17 @@ if (age === null) {
 } else if (age === ('')) {
     alert(`It is a pity that you did not want to enter your year of birth`);
 } else {
+
     const city = prompt('What city do you live in?', '');
+
     if (city === null) {
         alert((`It is a pity that you did not want to enter your city`));
     } else if (city === ('')) {
         alert((`It is a pity that you did not want to enter your city`));
     } else {
+
         const sport = prompt('What is your favourite kind of sport?', '');
+
         if (sport === null) {
             alert(`It is a pity that you did not want to enter your favourite sport`);
         } else if (sport === ('')) {
