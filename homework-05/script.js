@@ -20,22 +20,21 @@ if (age === null) {
 
             let message = `You are ${2023 - age} years old \nYou live in ${city}`;
 
-            if (city === 'Kyiv') {
+            if (city === `Kyiv`) {
                 message += `, the capital of Ukraine`;
-            } else if (city === 'Washington') {
+            } else if (city === `Washington`) {
                 message += `, the capital of USA`;
-            } else if (city === 'London') {
+            } else if (city === `London`) {
                 message += `, the capital of Great Britan`;
-            } else if (city === 'Warsaw') {
+            } else if (city === `Warsaw`) {
                 message += `, the capital of Poland`;
             }
 
-            if (sport === 'hockey') {
+            if (sport === `hockey`) {
                 message += `\nCool, you whant to be like Alexandr Ovechkin?`;
-            } else if (sport === 'basketball') {
-                message += `
-                Cool, you whant to be like Michael Jordan?`;
-            } else if (sport === 'football') {
+            } else if (sport === `basketball`) {
+                message += `\nCool, you whant to be like Michael Jordan?`;
+            } else if (sport === `football`) {
                 message += `\nCool, you whant to be like Cristiano Ronaldo?`;
             } else if (sport === sport) {
                 message += `\nCool, you whant to be ${sport} champion?`
