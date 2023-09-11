@@ -5,7 +5,7 @@ const sum = (function () {
         return num;
     };
 })();
+console.log(sum(3));
 console.log(sum(5));
-console.log(sum(10));
-console.log(sum(15));
+console.log(sum(20));
 
