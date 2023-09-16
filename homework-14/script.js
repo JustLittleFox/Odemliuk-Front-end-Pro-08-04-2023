@@ -10,12 +10,16 @@ class Student {
         const nextEmptySlot = this.attendance.findIndex(item => item === undefined);
         if (nextEmptySlot !== -1) {
             this.attendance[nextEmptySlot] = true;
+        } else {
+            console.log(`array is filed`);
         }
     }
     absent() {
         const nextEmptySlot = this.attendance.findIndex(item => item === undefined);
         if (nextEmptySlot !== -1) {
             this.attendance[nextEmptySlot] = false;
+        } else {
+            console.log(`array is filed`);
         }
     }
     calculateAge() {
