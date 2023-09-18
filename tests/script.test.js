@@ -1,5 +1,5 @@
 const { describe } = require('node:test');
-const Student = require('../homework-14 — копия');
+const Student = require('.');
 
 describe('Student', () => {
     it('should create a student', () => {
