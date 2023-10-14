@@ -1,4 +1,4 @@
-class StopWatch {
+export default class StopWatch {
     constructor(onTick) {
         this.onTick = onTick;
         this.hours = 0;
@@ -46,6 +46,12 @@ class StopWatch {
     }
 }
 
-const onTick = (time) => console.log(time);
-const stopWatch = new StopWatch(onTick);
-stopWatch.start();
+const timerElement = document.getElementById('timer');
+const stopWatch = new StopWatch(updateTimer);
+
+function updateTimer(time) {
+    const hours = String(time.hours).padStart(2, '0');
+    const minutes = String(time.minutes).padStart(2, '0');
+    const seconds = String(time.seconds).padStart(2, '0');
+}
+updateTimer({ hours: 0, minutes: 0, seconds: 0 });
