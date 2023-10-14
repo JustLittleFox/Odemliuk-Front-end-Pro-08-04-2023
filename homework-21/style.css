@@ -1,0 +1,30 @@
+.slider-container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.slider-image {
+    width: 100%;
+    max-width: 600px;
+    height: 850px;
+}
+
+.prev-button,
+.next-button {
+    position: absolute;
+    top: 50%;
+    background-color: #d81b34;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
