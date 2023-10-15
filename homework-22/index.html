@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="registration-form" class="form">
+        <input type="text" id="first-name" placeholder="Ім'я">
+        <input type="text" id="last-name" placeholder="Прізвище">
+        <input type="text" id="birthdate" placeholder="Дата народження">
+
+        <label>Стать:</label>
+        <br>
+        <div class="radio-choose">
+            <input type="radio" id="male" name="gender" value="Чоловік">
+            <label for="male">Чоловіча</label>
+
+            <input type="radio" id="female" name="gender" value="Жінка">
+            <label for="female">Жіноча</label>
+        </div>
+        <select id="city">
+            <option value="Київ">Київ</option>
+            <option value="Львів">Львів</option>
+            <option value="Одеса">Одеса</option>
+        </select>
+
+        <textarea id="address" placeholder="Адреса"></textarea>
+
+        <label>Мови, якими володієте:</label>
+        <div class="lang-check">
+            <input name="languages" type="checkbox" id="english" value="Англійська">
+            <label for="english">Англійська</label>
+            <input name="languages" type="checkbox" id="spanish" value="Іспанська">
+            <label for="spanish">Іспанська</label>
+            <input name="languages" type="checkbox" id="french" value="Французька">
+            <label for="french">Французька</label>
+        </div>
+
+        <button onclick="displayData()">Зберегти</button>
+    </div>
+
+    <div id="output-table" class="output-table"></div>
+    <script src="script.js"></script>
+</body>
+
+</html>
