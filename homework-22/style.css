@@ -18,6 +18,14 @@ body {
     width: 100%;
 }
 
+#save-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
 
 .form input,
 .form select,
@@ -43,13 +51,7 @@ body {
     margin: 15px 0;
 }
 
-.form button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+
 
 .output-table {
     margin-top: 20px;

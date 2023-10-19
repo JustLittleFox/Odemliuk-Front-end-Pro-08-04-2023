@@ -9,10 +9,10 @@
 </head>
 
 <body>
-    <div id="registration-form" class="form">
+    <form id="registration-form" class="form">
         <input type="text" id="first-name" placeholder="Ім'я">
         <input type="text" id="last-name" placeholder="Прізвище">
-        <input type="text" id="birthdate" placeholder="Дата народження">
+        <input type="date" id="birthdate" placeholder="Дата народження">
 
         <label>Стать:</label>
         <br>
@@ -40,9 +40,8 @@
             <input name="languages" type="checkbox" id="french" value="Французька">
             <label for="french">Французька</label>
         </div>
-
-        <button onclick="displayData()">Зберегти</button>
-    </div>
+        <input type="submit" id="save-btn" onclick="event.preventDefault(); displayData()">
+    </form>
 
     <div id="output-table" class="output-table"></div>
     <script src="script.js"></script>

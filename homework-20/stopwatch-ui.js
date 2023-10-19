@@ -5,7 +5,7 @@ export default class StopwatchUI {
         this.seconds = initialTime.seconds;
 
         this.timerElement = document.createElement('div');
-        this.updateTimerDisplay();
+
         this.startButton = document.createElement('button');
         this.pauseButton = document.createElement('button');
         this.resetButton = document.createElement('button');
@@ -23,20 +23,26 @@ export default class StopwatchUI {
         this.containerElement.appendChild(this.startButton);
         this.containerElement.appendChild(this.pauseButton);
         this.containerElement.appendChild(this.resetButton);
+        this.updateTimerDisplay()
     }
 
     updateTimerDisplay() {
         this.timerElement.textContent = `${String(this.hours).padStart(2, '0')}:${String(this.minutes).padStart(2, '0')}:${String(this.seconds).padStart(2, '0')}`;
+
     }
 
     setTime({ hours, minutes, seconds }) {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
-        this.render();
+        const hoursStr = String(this.hours).padStart(2, '0');
+        const minutesStr = String(this.minutes).padStart(2, '0');
+        const secondsStr = String(this.seconds).padStart(2, '0');
+        this.timerElement.textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
     }
 
     startCallback(callback) {
+
         this.startCallback = callback;
     }
 
@@ -46,13 +52,6 @@ export default class StopwatchUI {
 
     resetCallback(callback) {
         this.resetCallback = callback;
-    }
-
-    render() {
-        const hoursStr = String(this.hours).padStart(2, '0');
-        const minutesStr = String(this.minutes).padStart(2, '0');
-        const secondsStr = String(this.seconds).padStart(2, '0');
-        this.timerElement.textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
     }
 
     getContainerElement() {
