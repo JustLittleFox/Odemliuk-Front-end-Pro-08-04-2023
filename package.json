@@ -1,16 +1,17 @@
 {
-  "dependencies": {
-    "jest": "^29.7.0"
-  },
   "name": "foxit-pro",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
     "test": "tests"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch-uncommited": "jest --watch",
+    "test:watch-all": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
