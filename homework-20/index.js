@@ -1,19 +1,17 @@
 import Stopwatch from './stopwatch.js';
-import StopwatchUI from './stopwatch-ui.js';
+import StopwatchUi from './stopwatch-ui.js';
 
-const initialTime = { hours: 0, minutes: 0, seconds: 0 };
-const container = document.getElementById('stopwatches-container');
+function addTimer() {
+    const initialTime = { hours: 0, minutes: 0, seconds: 0 };
+    const ui = new StopwatchUi(initialTime);
+    const stopwatch = new Stopwatch(ui.setTime.bind(ui), initialTime);
 
-function createNewStopwatch() {
-    const ui = new StopwatchUI(initialTime);
-    const stopwatch = new Stopwatch(time => ui.setTime(time));
+    ui.addStartBtnListener((e) => stopwatch.start());
+    ui.addPauseBtnListener((e) => stopwatch.pause());
+    ui.addResetBtnListener((e) => stopwatch.reset());
 
-    ui.startCallback(() => stopwatch.start());
-    ui.pauseCallback(() => stopwatch.pause());
-    ui.resetCallback(() => stopwatch.reset());
-
-    container.appendChild(ui.getContainerElement());
+    ui.appendStopwatch(document.body);
 }
 
-document.getElementById('add-stopwatch-btn').addEventListener('click', createNewStopwatch);
-createNewStopwatch();
+const addTimerBtn = document.querySelector('#add-timer');
+addTimerBtn.addEventListener('click', addTimer);

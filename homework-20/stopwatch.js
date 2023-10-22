@@ -1,29 +1,30 @@
 export default class StopWatch {
-    constructor(onTick) {
+    constructor(onTick, initialTime) {
         this.onTick = onTick;
-        this.hours = 0;
-        this.minutes = 0;
-        this.seconds = 0;
+        this.time = initialTime;
         this.intervalId = null;
     }
 
     start() {
         if (!this.intervalId) {
             this.intervalId = setInterval(() => {
-                this.seconds++;
-                if (this.seconds === 60) {
-                    this.seconds = 0;
-                    this.minutes++;
-                    if (this.minutes === 60) {
-                        this.minutes = 0;
-                        this.hours++;
-                    }
+                this.time.seconds++;
+                if (this.time.seconds === 60) {
+                    this.time.seconds = 0;
+                    this.time.minutes++;
                 }
-                this.onTick({
-                    hours: this.hours,
-                    minutes: this.minutes,
-                    seconds: this.seconds
-                });
+
+                if (this.time.minutes === 60) {
+                    this.time.minutes = 0;
+                    this.time.hours++;
+                }
+
+                if (this.time.hours === 24) {
+                    this.time.seconds = 1;
+                    this.time.hours = 0;
+                }
+
+                this.onTick(this.time);
             }, 1000);
         }
     }
@@ -37,18 +38,12 @@ export default class StopWatch {
 
     reset() {
         this.pause();
-        this.hours = 0;
-        this.minutes = 0;
-        this.seconds = 0;
-        this.onTick({ hours: 0, minutes: 0, seconds: 0 });
+        this.time = { hours: 0, minutes: 0, seconds: 0 };
+        this.onTick(this.time);
     }
 
     getTime() {
-        return {
-            hours: this.hours,
-            minutes: this.minutes,
-            seconds: this.seconds
-        };
+        return this.time;
     }
 }
 

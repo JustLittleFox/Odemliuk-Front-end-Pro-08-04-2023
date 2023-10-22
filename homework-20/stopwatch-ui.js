@@ -1,60 +1,78 @@
 export default class StopwatchUI {
+    #ui = {};
     constructor(initialTime) {
-        this.hours = initialTime.hours;
-        this.minutes = initialTime.minutes;
-        this.seconds = initialTime.seconds;
-
-        this.timerElement = document.createElement('div');
-
-        this.startButton = document.createElement('button');
-        this.pauseButton = document.createElement('button');
-        this.resetButton = document.createElement('button');
-
-        this.startButton.textContent = 'Start';
-        this.pauseButton.textContent = 'Pause';
-        this.resetButton.textContent = 'Reset';
-
-        this.startButton.addEventListener('click', () => this.startCallback());
-        this.pauseButton.addEventListener('click', () => this.pauseCallback());
-        this.resetButton.addEventListener('click', () => this.resetCallback());
-
-        this.containerElement = document.createElement('div');
-        this.containerElement.appendChild(this.timerElement);
-        this.containerElement.appendChild(this.startButton);
-        this.containerElement.appendChild(this.pauseButton);
-        this.containerElement.appendChild(this.resetButton);
-        this.updateTimerDisplay()
+        this.#init(initialTime);
     }
 
-    updateTimerDisplay() {
-        this.timerElement.textContent = `${String(this.hours).padStart(2, '0')}:${String(this.minutes).padStart(2, '0')}:${String(this.seconds).padStart(2, '0')}`;
-
+    #getElement(tagName, classNames) {
+        const tag = document.createElement(tagName);
+        tag.classList.add(...[].concat(classNames));
+        return tag;
     }
 
-    setTime({ hours, minutes, seconds }) {
-        this.hours = hours;
-        this.minutes = minutes;
-        this.seconds = seconds;
-        const hoursStr = String(this.hours).padStart(2, '0');
-        const minutesStr = String(this.minutes).padStart(2, '0');
-        const secondsStr = String(this.seconds).padStart(2, '0');
-        this.timerElement.textContent = `${hoursStr}:${minutesStr}:${secondsStr}`;
+    #createWrapper() {
+        const wrapper = this.#getElement('div', 'stopwatch-wrapper');
+        this.#ui.wrapper = wrapper;
     }
 
-    startCallback(callback) {
-
-        this.startCallback = callback;
+    #addClock(time) {
+        const stopwatch = this.#getElement('h1', 'stopwatch');
+        stopwatch.id = 'stopwatch';
+        this.#ui.wrapper.append(stopwatch);
+        this.#ui.stopwatch = stopwatch;
     }
 
-    pauseCallback(callback) {
-        this.pauseCallback = callback;
+    #addButtons() {
+        const wrapper = this.#getElement('div', 'buttons-wrapper');
+        const ul = this.#getElement('ul', 'buttons-list');
+        const buttonTexts = ['Start', 'Pause', 'Reset'];
+        this.#ui.buttons = {};
+        buttonTexts.forEach((buttonText) => {
+            const li = this.#getElement('li', 'button-container');
+            const button = this.#getElement('button', [
+                'button',
+                buttonText.toLowerCase(),
+            ]);
+            button.id = buttonText;
+            button.textContent = buttonText;
+            li.append(button);
+            ul.append(li);
+            this.#ui.buttons[buttonText.toLowerCase()] = button;
+        });
+        wrapper.append(ul);
+        this.#ui.wrapper.append(wrapper);
     }
 
-    resetCallback(callback) {
-        this.resetCallback = callback;
+    #formatTime(time) {
+        return [
+            time.hours.toString().padStart(2, 0),
+            time.minutes.toString().padStart(2, 0),
+            time.seconds.toString().padStart(2, 0),
+        ].join(':');
     }
 
-    getContainerElement() {
-        return this.containerElement;
+    #init(initialTime) {
+        this.#createWrapper();
+        this.#addClock();
+        this.#addButtons();
+        this.setTime(initialTime);
+    }
+
+    setTime(time) {
+        this.#ui.stopwatch.textContent = this.#formatTime(time);
+    }
+
+    addStartBtnListener(callback) {
+        this.#ui.buttons.start.addEventListener('click', callback);
+    }
+    addPauseBtnListener(callback) {
+        this.#ui.buttons.pause.addEventListener('click', callback);
+    }
+    addResetBtnListener(callback) {
+        this.#ui.buttons.reset.addEventListener('click', callback);
+    }
+
+    appendStopwatch(container) {
+        container.append(this.#ui.wrapper);
     }
 }
