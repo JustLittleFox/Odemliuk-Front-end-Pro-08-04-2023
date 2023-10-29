@@ -19,13 +19,14 @@ let products = [
 ];
 
 function showCategories() {
+    history.pushState(null, '', '/Shop');
     let productsDiv = document.getElementById('products');
     let productInfoDiv = document.getElementById('product-info');
     let basketInfo = document.getElementById('show-basket');
     productsDiv.innerHTML = '';
     productInfoDiv.innerHTML = '';
     basketInfo.innerHTML = '';
-    window.location.hash = '/' + 'Shop';
+
     event.preventDefault()
 }
 
@@ -37,9 +38,11 @@ function loadCategories() {
     categories.forEach(category => {
         let button = document.createElement('button');
         button.textContent = category.name;
-        button.onclick = () => loadProducts(category.id);
+        button.onclick = () => {
+            loadProducts(category.id);
+            history.pushState(null, '', '/Shop/' + category.name);
+        };
         categoriesDiv.appendChild(button);
-        event.preventDefault()
     });
 }
 
@@ -47,13 +50,14 @@ function loadProducts(categoryId) {
     let productsDiv = document.getElementById('products');
     productsDiv.innerHTML = 'Товар: ';
     let category = categories.find(category => category.id === categoryId);
-    window.location.hash = '/' + 'Shop' + '/' + category.name;
     products.filter(product => product.category === categoryId).forEach(product => {
         let button = document.createElement('button');
         button.textContent = product.name;
-        button.onclick = () => loadProductInfo(product.id);
+        button.onclick = () => {
+            loadProductInfo(product.id);
+            history.pushState(null, '', '/Shop/' + category.name + '/' + product.name + product.id);
+        };
         productsDiv.appendChild(button);
-        event.preventDefault()
     });
 }
 
@@ -61,11 +65,9 @@ function loadProductInfo(productId) {
     let productInfoDiv = document.getElementById('product-info');
     productInfoDiv.innerHTML = '';
     let product = products.find(product => product.id === productId);
-    window.location.hash = '/' + 'Shop' + '/' + product.name + product.id;
     let info = document.createElement('p');
     info.textContent = `Назва товару: ${product.name}, Ціна товару: ${product.price} ${product.currency}`;
     productInfoDiv.appendChild(info);
-
     let buyButton = document.createElement('button');
     buyButton.textContent = 'Купити';
     buyButton.onclick = () => addToBasket(product.id);
@@ -96,8 +98,7 @@ function showBasket() {
         removeButton.onclick = () => removeFromBasket(index);
         productsDiv.appendChild(removeButton);
     });
-
-    window.location.hash = '/' + 'Shop' + '/' + 'Basket';
+    history.pushState(null, '', '/Shop/Basket');
     event.preventDefault();
 }
 document.getElementById('basket').addEventListener('click', showBasket);
@@ -113,5 +114,6 @@ window.onload = function () {
     loadCategories();
     basket = JSON.parse(localStorage.getItem('basket')) || [];
     document.getElementById('basket').textContent = `Кошик (${basket.length})`;
+    history.pushState(null, '', '/Shop');
 };
 
