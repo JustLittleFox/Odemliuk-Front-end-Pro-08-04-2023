@@ -33,6 +33,7 @@ document.getElementById('shop-name').addEventListener('click', showCategories);
 
 function loadCategories() {
     let categoriesDiv = document.getElementById('categories');
+    categoriesDiv.innerHTML = 'Категорiя: ';
     categories.forEach(category => {
         let button = document.createElement('button');
         button.textContent = category.name;
@@ -44,7 +45,7 @@ function loadCategories() {
 
 function loadProducts(categoryId) {
     let productsDiv = document.getElementById('products');
-    productsDiv.innerHTML = '';
+    productsDiv.innerHTML = 'Товар: ';
     let category = categories.find(category => category.id === categoryId);
     window.location.hash = '/' + 'Shop' + '/' + category.name;
     products.filter(product => product.category === categoryId).forEach(product => {
@@ -83,7 +84,7 @@ function addToBasket(productId) {
 function showBasket() {
     basket = JSON.parse(localStorage.getItem('basket')) || [];
     let productsDiv = document.getElementById('show-basket');
-    productsDiv.innerHTML = '';
+    productsDiv.innerHTML = 'Кошик:';
 
     basket.forEach((productId, index) => {
         let product = products.find(product => product.id === productId);
@@ -99,6 +100,7 @@ function showBasket() {
     window.location.hash = '/' + 'Shop' + '/' + 'Basket';
     event.preventDefault();
 }
+document.getElementById('basket').addEventListener('click', showBasket);
 
 function removeFromBasket(index) {
     basket.splice(index, 1);
@@ -106,7 +108,6 @@ function removeFromBasket(index) {
     document.getElementById('basket').textContent = `Кошик (${basket.length})`;
     showBasket();
 }
-document.getElementById('basket').addEventListener('click', showBasket);
 
 window.onload = function () {
     loadCategories();

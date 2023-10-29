@@ -1,15 +1,6 @@
 function toCamelCase(str) {
-    if (typeof str === "string" && str.includes("_")) {
-        let words = str.split("_");
-        for (let i = 1; i < words.length; i++) {
-            words[i] = words[i][0].toUpperCase() + words[i].slice(1);
-        }
-        return words.join("");
-    } else {
-        return str;
-    }
+    return str.replace(/_([a-z])/g, function (g) { return g[1].toUpperCase(); });
 }
-
 const response = {
     user_id: 'abc123',
     company_name: 'Hillel',
