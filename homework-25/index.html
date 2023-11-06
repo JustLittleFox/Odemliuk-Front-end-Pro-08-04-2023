@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>JavaScript: Promise</h1>
+    <h2>Пошук поста за ID</h2>
+
+    <input type="number" id="postId" min="1" max="100">
+    <button onclick="getPost()">Пошук поста</button>
+
+    <div id="post"></div>
+    <button id="loadComments" onclick="getComments()" style="display: none;">Завантажити коментарі</button>
+    <div id="comments"></div>
+
+</body>
+
+</html>
