@@ -17,5 +17,8 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
 }
