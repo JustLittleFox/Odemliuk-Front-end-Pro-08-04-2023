@@ -1,0 +1,18 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.Loading {
+  margin-bottom: 30px;
+}
+
+.Alert {
+  margin-bottom: 30px;
+}
+
+.ListGroup {
+  margin-bottom: 30px;
+}
