@@ -1,0 +1,14 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #1f1f21;
+}
+
+.carousel-item {
+  background-color: #1f1f21;
+}
+
+.slide-img {
+  height: 600px;
+}
